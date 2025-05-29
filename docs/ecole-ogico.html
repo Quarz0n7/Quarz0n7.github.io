@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calcola la tua Impronta di CO₂</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .container {
+      background-color: #1e2a38;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      max-width: 800px;
+      width: 100%;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #f9f871;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 1rem;
+      background-color: #2a3b4c;
+    }
+    .question label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+    .options label {
+      display: block;
+      padding: 0.4rem;
+      margin-bottom: 0.2rem;
+      cursor: pointer;
+    }
+    .options input[type="radio"] {
+      margin-right: 10px;
+    }
+    button {
+      background: #f9f871;
+      color: #1e2a38;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #e0e35b;
+    }
+    .result {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+      color: #ffffff;
+    }
+    .hidden {
+      display: none;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table, th, td {
+      border: 1px solid #ffffff;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quanto inquini? Calcola la tua Impronta di CO₂</h1>
+
+    <!-- Titolo e testo prima del quiz -->
+    <h2 id="intro-title">Introduzione</h2>
+    <p id="intro-text">Il nostro sito nasce da un progetto di educazione civica per sensibilizzare ragazzi e ragazze come noi sull'importanza di prendere decisioni di consumo più consapevoli e sensate.
+
+Sappiamo la difficoltà del nostro pianeta:
+inquinamento;
+cambiamento climatico
+spreco di risorse naturali. 
+E sappiamo anche che ogni gesto può fare la differenza.<br>
+Abbiamo approfondito i principali rischi ambientali che stiamo affrontando, il significato di “impronta ecologica” (potrai calcolare la tua!) e delle proposte concrete per consumare in modo sostenibile e circolare.<br>
+<br>
+Il futuro del pianeta dipende da noi!<br>
+Per l’appunto, ricollegandoci al punto precedente, a che serve l’impronta ecologica?<br>
+L’impronta ecologica misura l’impatto  che le attività che ,quotidianamente svolgiamo, hanno sull’ambiente , e là si può comunemente esprimere in ettari globali (gha).<br> Detto in parole povere, calcola la superficie necessaria per produrre le risolse che consumiamo, come l’energia o il cibo, e assorbire i rifiuti che generiamo, ad esempio la CO₂ .<br>
+Grazie al nostro quiz , che subito dopo apparirà , potrai calcolare la tua impronta ecologica.<br>
+</p>
+
+    <form id="quizForm">
+      <div id="questions"></div>
+      <button type="submit">Calcola</button>
+    </form>
+
+    <!-- Risultato dopo quiz -->
+    <div class="result" id="result"></div>
+
+    <!-- Contenuto post-quiz nascosto inizialmente -->
+    <div id="post-quiz-content" class="hidden">
+      <h2 id="post-title">Dopo aver svolto il quiz, analizziamo per bene gli elementi che lo hanno influenzato:<br><br>
+</h2>
+      <p id="post-text-1">Alimentazione:<br> consumate molta carne e alimenti altamente trasformati comporta l’uso di  grandi emissioni di CO₂, d’acqua e deforestazione.<br>
+
+
+Mobilità: <br>utilizzare spesso mezzi privati al posto di quelli pubblici contribuisce al riscaldamento globale.<br>
+
+
+Energia domestica:<br> il  riscaldamento e l’aria condizionata aumentano il consumo energetico e le emissioni.<br>
+
+
+Acquisti e sprechi:<br> oggi c’è questa moda del “fast fashion”, dell’elettronica usa e getta, di imballaggi non riciclabili e dello spreco alimentare.<br><br>
+
+
+Tutti questi aspetti sono determinanti per il global warming (riscaldamento globale), la crescita anomala della temperatura della Terra.
+Quindi come possiamo ridurre tutto ciò ? <br><br> 
+
+Esiste un metodo alternativo a quello lineare? Sì, certo. Parliamone allora.
+L’economia circolare è un modello economico alternativo a quello lineare (“produci, usa, getta”) e punta a:
+ridurre al minimo i rifiuti,<br>
+
+
+riutilizzare, riciclare, riparare ( regola delle 3 “R”),<br>
+
+
+ prolungare il ciclo di vita dei prodotti.<br><br>
+
+
+Cosa si intende con circolarità?
+Con circolarità intendiamo:
+progettare prodotti pensando già al loro riuso o riciclo,<br>
+
+
+usare energie rinnovabili,<br>
+
+
+creare sistemi di produzione e consumo sostenibili.<br>
+
+
+È un approccio fondamentale per combattere l’esaurimento delle risorse e i cambiamenti climatici, promuovendo innovazione sostenibile.<br><br>
+</p>
+      <h2>Quindi cos’è la TRANSIZIONE ENERGETICA?</h2>
+      <p>Essa è il processo con cui stiamo cercando di cambiare il modo in cui produciamo e usiamo l’energia, passando da fonti fossili a fonti rinnovabili.<br>
+La transizione energetica è quindi necessaria per:<br>
+evitare l’esaurimento delle fonti non rinnovabili;<br>
+migliorare la qualità dell’aria che respiriamo;<br>
+migliorare la qualità della vita;<br>
+soprattutto, creare un sistema energetico sicuro e sostenibile per il futuro. <br>
+Anche i gesti che facciamo nella nostra quotidianità hanno un impatto. Non a caso la transizione energetica serve a rendere questi gesti meno nocivi per il pianeta. <br>
+
+Infatti l’APPROVVIGIONAMENTO ENERGETICO è il modo in cui otteniamo l’energia che serve a far funzionare le nostre case, le industrie, i trasporti e tutto quello che ci circonda. Oggi nel mondo molta energia viene ancora prodotta dalle fonti fossili, che inquinano ma in modo limitato. Fortunatamente l’utilizzo delle fonti rinnovabili, come il sole, il vento, l’acqua e le biomasse, sta aumentando sempre di più.
+In Italia nel 2024 il 36% dell’energia elettrica è stata prodotta da fonti rinnovabili. L’obiettivo europeo è arrivare ad almeno il 55% entro il 2030.<br><br>
+
+La SFIDA della mobilità elettrica: di che si tratta? <br>
+Un tema importante della transizione energetica è il passaggio dalla mobilità a benzina e diesel alla mobilità elettrica.<br>
+Prendiamo come caso da esaminare le macchine elettriche. Ma come ogni cosa anche loro hanno vantaggi e criticità.<br>
+</p>
+      <table id="post-table">
+        <thead>
+          <tr>
+            <th>VANTAGGI</th>
+            <th>CRITICITÁ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Riduzione emissione CO₂</td>
+            <td>Produzione di elettricità non sempre da fonti rinnovabili</td>
+          </tr>
+          <tr>
+            <td>Inquinamento acustico minore</td>
+            <td>Prezzo d’acquisto elevato</td>
+          </tr>
+          <tr>
+            <td>Bassi costi di ricarica</td>
+            <td>Tempo di autonomia limitato</td>
+          </tr>
+          <tr>
+            <td>Inquinamento urbano ridotto</td>
+            <td>Poche colonnine di ricarica</td>
+          </tr>
+          <tr>
+            <td>Minore manutenzione</td>
+            <td>Tempi di ricarica lunghi</td>
+          </tr>
+          <tr>
+            <td>Tecnologia avanzata</td>
+            <td>Sostituzione e smaltimento della batteria</td>
+          </tr>
+          <tr>
+            <td>Efficienza energetica superiore</td>
+            <td>Produzione della batteria</td>
+          </tr>
+          <tr>
+            <td>Facili spostamenti in area urbana</td>
+            <td>Autonomia ridotta in autostrada</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p id="post-text-2">Colleghiamoci ad un punto:<br><br> quali sono attualmente i modi per smaltire una batteria?
+Sicuramente il metodo dello smaltimento finale non è quello da utilizzare. Infatti se le batterie non vengono riciclate correttamente, si annulla parte del beneficio ecologico dell’auto elettrica e non riusciremmo a risolvere nulla.
+Abbiamo due strade perseguibili però:<br><br>
+Il riciclo<br>
+Il riutilizzo<br>
+Il riciclo è il metodo più diffuso dove le batterie esaurite vengono smontate e i materiali al loro interno vengono estratti e recuperati. Questo metodo è fondamentale per rendere davvero “circolare” la mobilità elettrica, come abbiamo spiegato prima. Invece il riutilizzo si può attuare quando la batteria non è più adatta all’auto ma si può utilizzare in piccoli veicoli elettrici. Questa seconda via riduce lo spreco di materiali e allunga il ciclo di vita della batteria, in linea con l’economia circolare che abbiamo descritto nel progetto.<br>
+
+
+Insomma, per concludere, l’auto elettrica può far risparmiare il denaro e può far ridurre l’inquinamento, ma ha bisogno di tecnologie ancora in evoluzione. L’auto elettrica non è perfetta, ma rappresenta una delle strade principali verso la mobilità sostenibile. E cosa dobbiamo fare noi? Seguire le strade che ci porteranno a migliorare la nostra vita sulla terra!
+
+                                                                                                                                                                                                                                                                                                                                                                                                   
+
+Pro e Contro della transizione energetica:<br><br>
+Pro: <br>
+-Riduzione delle emissioni di CO₂ e altri inquinanti;<br>
+-Uso di fonti rinnovabili infinite;<br>
+-Calo dei costi energetici grazie alle fonti rinnovabili;<br>
+-Creazione di nuovi settori e occupazione verde;	<br>
+-Indipendenza da paesi esportatori di gas/petrolio;<br>
+-Possibilità di reti più intelligenti e distribuite;<br>
+-Opportunità di accesso equo all’energia pulita;<br><br>
+
+Contro:<br>
+-Alcuni impianti possono essere dannosi per ecosistemi o paesaggi;		<br>
+-Dipendenza da materie prime critiche (es. litio per batterie);<br>
+-Alti costi iniziali per infrastrutture e tecnologia;	-Perdita di posti di lavoro nei settori fossili tradizionali;<br>
+-Rischi di instabilità se mancano sistemi di accumulo o backup	;<br>
+-Intermittenza di solare/eolico richiede sistemi di accumulo o ibridazione;	<br>
+-Rischio di aumenti dei costi per i consumatori durante la transizione;<br>
+
+
+
+</p>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      "Km percorsi in auto a settimana?",
+      "Km percorsi in aereo all'anno?",
+      "Consumo elettrico mensile (kWh)?",
+      "Litri d'acqua calda al giorno?",
+      "Pasti con carne rossa a settimana?",
+      "Capi di abbigliamento nuovi al mese?",
+      "Kg di rifiuti prodotti a settimana?",
+      "Dispositivi elettronici lasciati accesi?",
+      "Minuti medi di doccia?",
+      "Uso dei mezzi pubblici a settimana?",
+      "Uso della bicicletta a settimana?",
+      "Km percorsi in treno all'anno?",
+      "Elettrodomestici utilizzati al giorno?",
+      "Volte che mangi fuori casa a settimana?",
+      "Prodotti locali acquistati a settimana?",
+      "Prodotti biologici consumati a settimana?",
+      "Bottiglie di plastica usate a settimana?",
+      "Sacchetti di plastica usati a settimana?",
+      "Ricicli correttamente i rifiuti?",
+      "Piante in casa/balcone?"
+    ];
+
+    const options = [
+      ['0-20 km', '21-50 km', '51-100 km', '100+ km'],
+      ['0 km', '1.000 km', '5.000 km', '10.000+ km'],
+      ['<100 kWh', '100-200 kWh', '201-400 kWh', '400+ kWh'],
+      ['<20 l', '20-40 l', '41-60 l', '60+ l'],
+      ['0', '1-2', '3-5', '6+'],
+      ['0', '1-2', '3-5', '6+'],
+      ['<2 kg', '2-5 kg', '6-10 kg', '10+ kg'],
+      ['0', '1-2', '3-5', '6+'],
+      ['<5 min', '6-10 min', '11-15 min', '15+ min'],
+      ['0', '1-2', '3-5', '6+'],
+      ['0', '1-2', '3-5', '6+'],
+      ['0 km', '1.000 km', '5.000 km', '10.000+ km'],
+      ['0-2', '3-5', '6-8', '9+'],
+      ['0', '1-2', '3-5', '6+'],
+      ['0', '1-2', '3-5', '6+'],
+      ['0', '1-2', '3-5', '6+'],
+      ['0', '1-2', '3-5', '6+'],
+      ['0', '1-2', '3-5', '6+'],
+      ['Mai', 'Raramente', 'Spesso', 'Sempre'],
+      ['0', '1-2', '3-5', '6+']
+    ];
+
+    const weights = [
+      [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4],
+      [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4],
+      [1, 2, 3, 4], [4, 3, 2, 1], [4, 3, 2, 1], [1, 2, 3, 4],
+      [1, 2, 3, 4], [1, 2, 3, 4], [4, 3, 2, 1], [4, 3, 2, 1],
+      [1, 2, 3, 4], [1, 2, 3, 4], [4, 3, 2, 1], [4, 3, 2, 1]
+    ];
+
+    const questionsContainer = document.getElementById("questions");
+
+    questions.forEach((q, i) => {
+      const div = document.createElement("div");
+      div.classList.add("question");
+      const label = document.createElement("label");
+      label.textContent = `${i + 1}. ${q}`;
+      div.appendChild(label);
+
+      const optGroup = document.createElement("div");
+      optGroup.classList.add("options");
+
+      options[i].forEach((opt, j) => {
+        const id = `q${i}_opt${j}`;
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = `q${i}`;
+        radio.id = id;
+        radio.value = j;
+        radio.required = true;
+
+        const optLabel = document.createElement("label");
+        optLabel.htmlFor = id;
+        optLabel.textContent = opt;
+        optLabel.prepend(radio);
+
+        optGroup.appendChild(optLabel);
+      });
+
+      div.appendChild(optGroup);
+      questionsContainer.appendChild(div);
+    });
+
+    document.getElementById("quizForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      let total = 0;
+      for (let i = 0; i < questions.length; i++) {
+        const val = parseInt(formData.get(`q${i}`));
+        if (!isNaN(val)) {
+          total += weights[i][val];
+        }
+      }
+      const co2 = (total * 75).toFixed(2);
+      document.getElementById("result").innerText = `La tua impronta annuale stimata è di ${co2} kg di CO₂.`;
+
+      // Mostra contenuto post-quiz
+      document.getElementById("post-quiz-content").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
